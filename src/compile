@@ -1,0 +1,19 @@
+rm *.mod *.o
+
+gfortran -c random_generator.f95      \
+            bd_nvt_wca_clst_lib.f95   \
+            structure_lib.f95         \
+            dynamics_lib.f95          \
+            cpu_time_lib.f95          \
+         -fno-range-check             \
+         -fbackslash
+
+gfortran -o ../bin/fractal_Lorentz    \
+            fractal_Lorentz.f95       \
+            random_generator.o        \
+            bd_nvt_wca_clst_lib.o     \
+            dynamics_lib.o            \
+            structure_lib.o           \
+            cpu_time_lib.o            \
+         -fcheck=bounds               \
+         -fbackslash
